@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CountdownTimer from './CountdownTimer';
 // import '../style.css';
-
+import { Typography } from '@mui/material';
 export default function StartedTimer() {
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
   const SEVEN_DAYS_IN_MS = 7 * 24 * 60 * 60 * 1000;
@@ -12,17 +12,25 @@ export default function StartedTimer() {
   const time = NOW_IN_MS + 10000;
 
   return (
-    <div>
-      <h1>Countdown Timer</h1>
+    <Typography>
+      <Typography component="h1" variant="h1">
+        Countdown Timer
+      </Typography>
 
-      <h2>Expires after 3 days!!!</h2>
+      <Typography component="h2" variant="h2">
+        Expires after 3 days!!!
+      </Typography>
       <CountdownTimer targetDate={dateTimeAfterThreeDays} />
 
-      <h2>Custom Timer !</h2>
+      <Typography component="h2" variant="h2">
+        Custom Timer !
+      </Typography>
       <CountdownTimer targetDate={time} />
 
-      <h2>Expires after 7 days!!!</h2>
+      <Typography component="h2" variant="h2">
+        Expires after 7 days!!!
+      </Typography>
       <CountdownTimer targetDate={dateTimeAfterSevenDays} />
-    </div>
+    </Typography>
   );
 }
