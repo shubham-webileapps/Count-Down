@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CountdownTimer from './CountdownTimer';
-import '../style.css';
+// import '../style.css';
 
 export default function StartedTimer() {
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
