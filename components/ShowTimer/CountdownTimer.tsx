@@ -46,8 +46,14 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
     </Typography>
   );
 };
+
 const renderTime = ({ remainingTime }) => {
-  const [days, hours, minutes, seconds] = useCountdown(remainingTime);
+  // const [days, hours, minutes, seconds] = useCountdown(remainingTime);
+  const mytime = remainingTime;
+  const days = Math.floor(mytime / 86400);
+  const hours = Math.floor(mytime / 3600);
+  const minutes = Math.floor((mytime % 3600) / 60);
+  const seconds = mytime % 60;
 
   if (days + hours + minutes + seconds <= 0) {
     return <ExpiredNotice />;
@@ -66,12 +72,23 @@ const renderTime = ({ remainingTime }) => {
 const CountdownTimer = ({ targetDate }) => {
   return (
     <CountdownCircleTimer
-      updateInterval={null}
+      updateInterval={0}
       isPlaying
       duration={targetDate}
-      colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
+      colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+      colorsTime={[7, 5, 2, 0]}
       // onComplete={() => [true, 1000]}
     >
+      {/* {(remainingTime) => {
+        const mytime = remainingTime.remainingTime;
+        const days = Math.floor(mytime / 86400);
+        const hours = Math.floor(mytime / 3600);
+        const minutes = Math.floor((mytime % 3600) / 60);
+        const seconds = mytime % 60;
+
+        return `${days}:${hours}:${minutes}:${seconds}`;
+      }} */}
+
       {renderTime}
     </CountdownCircleTimer>
   );
