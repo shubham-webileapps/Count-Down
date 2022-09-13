@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import DateTimeDisplay from './DateTimeDisplay';
-import { useCountdown } from './useCountdown';
 import { Typography } from '@mui/material';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 const ExpiredNotice = () => {
@@ -48,7 +47,6 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
 };
 
 const renderTime = ({ remainingTime }) => {
-  // const [days, hours, minutes, seconds] = useCountdown(remainingTime);
   const mytime = remainingTime;
   const days = Math.floor(mytime / 86400);
   const hours = Math.floor(mytime / 3600);
