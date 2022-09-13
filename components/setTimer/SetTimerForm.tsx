@@ -12,13 +12,14 @@ import {
 } from '@mui/material';
 import MyField from './MyField';
 import { Formik, Form as MyForm } from 'formik';
-// import { useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import {
   validateSeconds,
   validateDays,
   validateMintus,
   validateHours,
+  OnSubmit,
 } from './MyFunc';
 
 const SetTimerForm = (props) => {
@@ -26,7 +27,7 @@ const SetTimerForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setTimerTime } = bindActionCreators(actionCreators, dispatch);
-  // const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Card container="true" spacing={2}>
@@ -37,40 +38,7 @@ const SetTimerForm = (props) => {
             mintus: 0,
             seconds: 0,
           }}
-          onSubmit={(values, actions) => {
-            if (
-              !isNaN(parseInt(values.mintus)) &&
-              values.mintus <= 0 &&
-              values.mintus >= 59 &&
-              !isNaN(parseInt(values.hours)) &&
-              values.hours <= 0 &&
-              values.hours >= 23 &&
-              !isNaN(parseInt(values.seconds)) &&
-              values.seconds <= 0 &&
-              values.seconds >= 59 &&
-              !isNaN(parseInt(values.days)) &&
-              values.days <= 0
-            ) {
-              const newSeconds =
-                ((parseInt(values.days) * 24 + parseInt(values.hours)) * 60 +
-                  parseInt(values.mintus)) *
-                  60 +
-                parseInt(values.seconds);
-              setTimerTime(newSeconds);
-
-              // enqueueSnackbar(props.name + ' ' + values.mintus + ' success');
-              //navigate to home
-              navigate('/');
-            }
-            actions.resetForm({
-              values: {
-                days: 0,
-                hours: 0,
-                mintus: 0,
-                seconds: 0,
-              },
-            });
-          }}
+          onSubmit={(values, actions) => OnSubmit(values, actions)}
         >
           {(props) => (
             <MyForm>

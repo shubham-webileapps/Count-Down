@@ -1,9 +1,3 @@
-// import * as React from 'react';
-// import './style.css';
-// import StartedTimer from './components/ShowTimer/StartedTimer';
-// export default function App() {
-//   return <StartedTimer />;
-// }
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import StartedTimer from './components/ShowTimer/StartedTimer';
@@ -24,9 +18,7 @@ export default function App() {
             <Navbar />
             <Routes>
               <Route exact path="/ShowTimer" element={<StartedTimer />}></Route>
-
-              <Route exact path="/" element={'submited'}></Route>
-              <Route exact path="/setTimer" element={<SetTimerForm />}></Route>
+              <Route exact path="/" element={<SetTimerForm />}></Route>
             </Routes>
           </Router>
         </Container>

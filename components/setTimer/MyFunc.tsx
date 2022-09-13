@@ -26,5 +26,47 @@ function validateHours(value) {
   }
   return error;
 }
+OnSubmit={(values, actions) => {
+  if (
+    !isNaN(parseInt(values.mintus)) &&
+    values.mintus >= 0 &&
+    values.mintus < 60 &&
+    !isNaN(parseInt(values.hours)) &&
+    values.hours >= 0 &&
+    values.hours < 24 &&
+    !isNaN(parseInt(values.seconds)) &&
+    values.seconds >= 0 &&
+    values.seconds < 60 &&
+    !isNaN(parseInt(values.days)) &&
+    values.days >= 0 &&
+    !(
+      values.days === 0 &&
+      values.seconds === 0 &&
+      values.hours === 0 &&
+      values.mintus === 0
+    )
+  ) {
+    const newSeconds =
+      ((parseInt(values.days) * 24 + parseInt(values.hours)) * 60 +
+        parseInt(values.mintus)) *
+        60 +
+      parseInt(values.seconds);
+    setTimerTime(newSeconds);
 
-export { validateSeconds, validateDays, validateMintus, validateHours };
+    enqueueSnackbar(values.mintus + ' success');
+    // navigate to home
+    navigate('/ShowTimer');
+  } else {
+    enqueueSnackbar('Enter a Valid input');
+  }
+  actions.resetForm({
+    values: {
+      days: 0,
+      hours: 0,
+      mintus: 0,
+      seconds: 0,
+    },
+  });
+}}
+
+export { validateSeconds, validateDays, validateMintus, validateHours ,OnSubmit};

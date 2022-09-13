@@ -1,7 +1,8 @@
-export const setTimerTime = (mtime) => {
+export const setTimerTime = (time) => {
   return (dispatch) => {
     dispatch({
-      time: mtime,
+      time: time,
+      type: 'number',
     });
   };
 };
