@@ -1,5 +1,9 @@
 import React from 'react';
-
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from '../state/index';
+import { bindActionCreators } from 'redux';
 import {
   Button,
   Box,
@@ -19,10 +23,12 @@ import {
   OnSubmit,
 } from './MyFunc';
 
-const SetTimerForm = (props) => {
-  const { name } = props;
-
-  
+const SetTimerForm = () => {
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
+  const { setTimerTime } = bindActionCreators(actionCreators, dispatch);
+  const MyhooksConnections = { navigate, enqueueSnackbar, setTimerTime };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Card container="true" spacing={2}>
@@ -33,7 +39,9 @@ const SetTimerForm = (props) => {
             mintus: 0,
             seconds: 0,
           }}
-          onSubmit={(values, actions) => OnSubmit(values, actions)}
+          onSubmit={(values, actions) =>
+            OnSubmit(values, actions, MyhooksConnections)
+          }
         >
           {(props) => (
             <MyForm>

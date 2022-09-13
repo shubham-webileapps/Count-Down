@@ -1,8 +1,3 @@
-import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { actionCreators } from '../state/index';
-import { bindActionCreators } from 'redux';
 function validateSeconds(value) {
   let error;
   if ((!value && value !== 0) || value < 0 || value > 59) {
@@ -31,11 +26,9 @@ function validateHours(value) {
   }
   return error;
 }
-function OnSubmit(values, actions) {
-  const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch();
-  const { setTimerTime } = bindActionCreators(actionCreators, dispatch);
+let msg = 'Succussfully Set A Timer For ';
+
+function OnSubmit(values, actions, MyhooksConnections) {
   if (
     !isNaN(parseInt(values.mintus)) &&
     values.mintus >= 0 &&
@@ -60,13 +53,16 @@ function OnSubmit(values, actions) {
         parseInt(values.mintus)) *
         60 +
       parseInt(values.seconds);
-    setTimerTime(newSeconds);
-
-    enqueueSnackbar(values.mintus + ' success');
+    MyhooksConnections.setTimerTime(newSeconds);
+    if (values.days !== 0) msg = msg + values.days + ' Days ';
+    if (values.hours !== 0) msg = msg + values.hours + ' Hours';
+    if (values.mintus !== 0) msg = msg + values.mintus + ' Mintus';
+    if (values.seconds !== 0) msg = msg + values.seconds + ' Seconds.';
+    MyhooksConnections.enqueueSnackbar(msg);
     // navigate to home
-    navigate('/ShowTimer');
+    MyhooksConnections.navigate('/ShowTimer');
   } else {
-    enqueueSnackbar('Enter a Valid input');
+    MyhooksConnections.enqueueSnackbar('Enter a Valid input');
   }
   actions.resetForm({
     values: {
