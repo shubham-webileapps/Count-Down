@@ -53,7 +53,14 @@ const renderTime = ({ remainingTime }) => {
     return <div className="timer">Too lale...</div>;
   }
 
-  const [days, hours, minutes, seconds] = useCountdown(remainingTime);
+  // const [days, hours, minutes, seconds] = useCountdown(remainingTime);
+  const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+  // return `${days}:${hours}:${minutes}:${seconds}`;
   return (
     <ShowCounter
       days={days}
@@ -79,6 +86,12 @@ const CountdownTimer = ({ targetDate }) => {
       >
         {renderTime}
       </CountdownCircleTimer>
+      // <ShowCounter
+      //   days={days}
+      //   hours={hours}
+      //   minutes={minutes}
+      //   seconds={seconds}
+      // />
     );
   }
 };
