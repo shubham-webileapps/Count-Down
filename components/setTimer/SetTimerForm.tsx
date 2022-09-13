@@ -1,7 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { actionCreators } from '../state/index';
-import { bindActionCreators } from 'redux';
+
 import {
   Button,
   Box,
@@ -12,8 +10,7 @@ import {
 } from '@mui/material';
 import MyField from './MyField';
 import { Formik, Form as MyForm } from 'formik';
-import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router-dom';
+
 import {
   validateSeconds,
   validateDays,
@@ -24,10 +21,8 @@ import {
 
 const SetTimerForm = (props) => {
   const { name } = props;
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { setTimerTime } = bindActionCreators(actionCreators, dispatch);
-  const { enqueueSnackbar } = useSnackbar();
+
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Card container="true" spacing={2}>
