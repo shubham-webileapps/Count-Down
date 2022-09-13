@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DateTimeDisplay from './DateTimeDisplay';
 import { Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,6 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
       <Typography
         component="a"
         variant="a"
-        // href="https://tapasadhikary.com"
         target="_blank"
         rel="noopener noreferrer"
         className="countdown-link"
@@ -77,8 +76,14 @@ const CountdownTimer = ({ targetDate }) => {
       updateInterval={0}
       isPlaying
       duration={targetDate}
-      colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-      colorsTime={[7, 5, 2, 0]}
+      colors={['#004777', '#1976d2', '#F7B801', '#A30000', '#A30000']}
+      colorsTime={[
+        targetDate * 0.9,
+        targetDate * 0.75,
+        targetDate * 0.5,
+        targetDate * 0.2,
+        0,
+      ]}
       // onComplete={() => [true, 1000]}
     >
       {renderTime}
