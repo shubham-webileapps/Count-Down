@@ -7,9 +7,7 @@ const ExpiredNotice = () => {
   return (
     <Typography className="expired-notice" component="div">
       <Typography component="span">Expired!!!</Typography>
-      <Typography component="p">
-        Please select a future date and time.
-      </Typography>
+      <Typography component="p">Please select a time.</Typography>
     </Typography>
   );
 };
