@@ -6,7 +6,8 @@ import { Typography } from '@mui/material';
 export default function StartedTimer() {
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
   const NOW_IN_MS = new Date().getTime();
-  const time = NOW_IN_MS + 10000;
+  // const time = NOW_IN_MS + 10000;
+  const time = 10000;
 
   return (
     <Typography>

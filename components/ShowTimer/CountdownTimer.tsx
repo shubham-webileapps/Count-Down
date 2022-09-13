@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DateTimeDisplay from './DateTimeDisplay';
 import { useCountdown } from './useCountdown';
 import { Typography } from '@mui/material';
@@ -49,51 +49,45 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
   );
 };
 const renderTime = ({ remainingTime }) => {
-  if (remainingTime === 0) {
-    return <div className="timer">Too lale...</div>;
-  }
-
   // const [days, hours, minutes, seconds] = useCountdown(remainingTime);
-  const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-  // return `${days}:${hours}:${minutes}:${seconds}`;
-  return (
-    <ShowCounter
-      days={days}
-      hours={hours}
-      minutes={minutes}
-      seconds={seconds}
-    />
-  );
-};
+  const minuteSeconds = 60;
+  const hourSeconds = 3600;
+  const daySeconds = 86400;
+  const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
+  const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
+  const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
+  const getTimeDays = (time) => (time / daySeconds) | 0;
 
-const CountdownTimer = ({ targetDate }) => {
-  const [days, hours, minutes, seconds] = useCountdown(targetDate);
-
+  const days = getTimeDays(remainingTime);
+  const hours = getTimeHours(remainingTime);
+  const minutes = getTimeMinutes(remainingTime);
+  const seconds = getTimeSeconds(remainingTime);
   if (days + hours + minutes + seconds <= 0) {
     return <ExpiredNotice />;
   } else {
     return (
-      <CountdownCircleTimer
-        isPlaying
-        duration={targetDate}
-        colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
-        // onComplete={() => [true, 1000]}
-      >
-        {renderTime}
-      </CountdownCircleTimer>
-      // <ShowCounter
-      //   days={days}
-      //   hours={hours}
-      //   minutes={minutes}
-      //   seconds={seconds}
-      // />
+      <ShowCounter
+        days={days}
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+      />
     );
   }
+};
+
+const CountdownTimer = ({ targetDate }) => {
+  return (
+    <CountdownCircleTimer
+      updateInterval={null}
+      isPlaying
+      duration={targetDate}
+      colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
+      // onComplete={() => [true, 1000]}
+    >
+      {renderTime}
+    </CountdownCircleTimer>
+  );
 };
 
 export default CountdownTimer;
