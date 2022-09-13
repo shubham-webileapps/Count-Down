@@ -2,6 +2,7 @@ import React from 'react';
 import DateTimeDisplay from './DateTimeDisplay';
 import { useCountdown } from './useCountdown';
 import { Typography } from '@mui/material';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 const ExpiredNotice = () => {
   return (
     <Typography className="expired-notice" component="div">
@@ -24,27 +25,42 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
         rel="noopener noreferrer"
         className="countdown-link"
       >
-        <DateTimeDisplay value={days} type={'Days'} isDanger={days <= 3} />
+        <DateTimeDisplay value={days} type={'Day'} isDanger={days <= 3} />
         <Typography variant="p">:</Typography>
         <DateTimeDisplay
           value={hours}
-          type={'Hours'}
+          type={'Hour'}
           isDanger={hours <= 3 && days <= 3}
         />
         <Typography variant="p">:</Typography>
         <DateTimeDisplay
           value={minutes}
-          type={'Mins'}
+          type={'Min'}
           isDanger={hours <= 3 && days <= 3 && minutes <= 3}
         />
         <Typography variant="p">:</Typography>
         <DateTimeDisplay
           value={seconds}
-          type={'Seconds'}
+          type={'Sec'}
           isDanger={hours <= 3 && days <= 3 && minutes <= 3 && seconds <= 5}
         />
       </Typography>
     </Typography>
+  );
+};
+const renderTime = ({ remainingTime }) => {
+  if (remainingTime === 0) {
+    return <div className="timer">Too lale...</div>;
+  }
+
+  const [days, hours, minutes, seconds] = useCountdown(remainingTime);
+  return (
+    <ShowCounter
+      days={days}
+      hours={hours}
+      minutes={minutes}
+      seconds={seconds}
+    />
   );
 };
 
@@ -55,12 +71,14 @@ const CountdownTimer = ({ targetDate }) => {
     return <ExpiredNotice />;
   } else {
     return (
-      <ShowCounter
-        days={days}
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
-      />
+      <CountdownCircleTimer
+        isPlaying
+        duration={targetDate}
+        colors={[['#004777', 0.33], ['#F7B801', 0.33], ['#A30000']]}
+        // onComplete={() => [true, 1000]}
+      >
+        {renderTime}
+      </CountdownCircleTimer>
     );
   }
 };

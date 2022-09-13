@@ -37,7 +37,7 @@
 
 .show-counter .countdown {
   line-height: 1.25rem;
-  padding: 0 0.75rem 0 0.75rem;
+  padding: 0 1 0 1;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -49,10 +49,11 @@
 
 .show-counter .countdown > p {
   margin: 0;
+  font-size: 10px;
 }
 
 .show-counter .countdown > span {
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 10px;
   line-height: 1rem;
 }
