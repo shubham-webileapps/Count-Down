@@ -49,19 +49,8 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
   );
 };
 const renderTime = ({ remainingTime }) => {
-  // const [days, hours, minutes, seconds] = useCountdown(remainingTime);
-  const minuteSeconds = 60;
-  const hourSeconds = 3600;
-  const daySeconds = 86400;
-  const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
-  const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
-  const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
-  const getTimeDays = (time) => (time / daySeconds) | 0;
+  const [days, hours, minutes, seconds] = useCountdown(remainingTime);
 
-  const days = getTimeDays(remainingTime);
-  const hours = getTimeHours(remainingTime);
-  const minutes = getTimeMinutes(remainingTime);
-  const seconds = getTimeSeconds(remainingTime);
   if (days + hours + minutes + seconds <= 0) {
     return <ExpiredNotice />;
   } else {
