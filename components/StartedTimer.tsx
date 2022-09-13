@@ -13,24 +13,13 @@ export default function StartedTimer() {
 
   return (
     <Typography>
-      <Typography component="h1" variant="h1">
-        Countdown Timer
-      </Typography>
+      <Typography variant="h3">Countdown Timer</Typography>
 
-      <Typography component="h2" variant="h2">
-        Expires after 3 days!!!
-      </Typography>
+      <Typography variant="h4">Expires after 3 days!!!</Typography>
       <CountdownTimer targetDate={dateTimeAfterThreeDays} />
 
-      <Typography component="h2" variant="h2">
-        Custom Timer !
-      </Typography>
+      <Typography variant="h4">Custom Timer !</Typography>
       <CountdownTimer targetDate={time} />
-
-      <Typography component="h2" variant="h2">
-        Expires after 7 days!!!
-      </Typography>
-      <CountdownTimer targetDate={dateTimeAfterSevenDays} />
     </Typography>
   );
 }
