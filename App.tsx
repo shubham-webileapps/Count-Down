@@ -25,7 +25,8 @@ export default function App() {
             <Routes>
               <Route exact path="/ShowTimer" element={<StartedTimer />}></Route>
 
-              <Route exact path="/" element={<SetTimerForm />}></Route>
+              <Route exact path="/" element={'submited'}></Route>
+              <Route exact path="/setTimer" element={<SetTimerForm />}></Route>
             </Routes>
           </Router>
         </Container>

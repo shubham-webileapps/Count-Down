@@ -14,37 +14,14 @@ import MyField from './MyField';
 import { Formik, Form as MyForm } from 'formik';
 // import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import {
+  validateSeconds,
+  validateDays,
+  validateMintus,
+  validateHours,
+} from './MyFunc';
 
-function validateSeconds(value) {
-  let error;
-  if (!value || value < 0 || value > 59) {
-    error = 'Please enter Seconds ';
-  }
-  return error;
-}
-function validateDays(value) {
-  let error;
-  if (!value || value < 0) {
-    error = 'Please enter Days ';
-  }
-  return error;
-}
-function validateMintus(value) {
-  let error;
-  if (!value || value < 0 || value > 59) {
-    error = 'Please enter Mintus ';
-  }
-  return error;
-}
-function validateHours(value) {
-  let error;
-  if (!value || value < 0 || value > 23) {
-    error = 'Please enter Hours ';
-  }
-  return error;
-}
-
-const Form = (props) => {
+const SetTimerForm = (props) => {
   const { name } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,11 +32,31 @@ const Form = (props) => {
       <Card container="true" spacing={2}>
         <Formik
           initialValues={{
+            days: 0,
+            hours: 0,
             mintus: 0,
+            seconds: 0,
           }}
           onSubmit={(values, actions) => {
-            if (!isNaN(parseInt(values.mintus)) && values.mintus !== 0) {
-              setTimerTime(parseInt(values.mintus));
+            if (
+              !isNaN(parseInt(values.mintus)) &&
+              values.mintus <= 0 &&
+              values.mintus >= 59 &&
+              !isNaN(parseInt(values.hours)) &&
+              values.hours <= 0 &&
+              values.hours >= 23 &&
+              !isNaN(parseInt(values.seconds)) &&
+              values.seconds <= 0 &&
+              values.seconds >= 59 &&
+              !isNaN(parseInt(values.days)) &&
+              values.days <= 0
+            ) {
+              const newSeconds =
+                ((parseInt(values.days) * 24 + parseInt(values.hours)) * 60 +
+                  parseInt(values.mintus)) *
+                  60 +
+                parseInt(values.seconds);
+              setTimerTime(newSeconds);
 
               // enqueueSnackbar(props.name + ' ' + values.mintus + ' success');
               //navigate to home
@@ -67,7 +64,10 @@ const Form = (props) => {
             }
             actions.resetForm({
               values: {
+                days: 0,
+                hours: 0,
                 mintus: 0,
+                seconds: 0,
               },
             });
           }}
@@ -84,17 +84,38 @@ const Form = (props) => {
                   color="text.secondary"
                 >
                   <MyField
+                    name="days"
+                    validate={validateDays}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    error={props.errors.days}
+                  />
+                  <MyField
+                    name="hours"
+                    validate={validateHours}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    error={props.errors.hours}
+                  />
+                  <MyField
                     name="mintus"
                     validate={validateMintus}
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     error={props.errors.mintus}
                   />
+                  <MyField
+                    name="seconds"
+                    validate={validateSeconds}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    error={props.errors.seconds}
+                  />
                 </Typography>
               </CardContent>
               <CardActions>
                 <Button size="small" sx={{ color: 'red' }} type="submit">
-                  {name}
+                  Submit
                 </Button>
               </CardActions>
             </MyForm>
@@ -104,4 +125,4 @@ const Form = (props) => {
     </Box>
   );
 };
-export default Form;
+export default SetTimerForm;
