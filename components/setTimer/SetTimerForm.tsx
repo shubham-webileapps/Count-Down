@@ -8,12 +8,10 @@ import {
   CardContent,
   CardActions,
   Card,
-  InputAdornment,
   Typography,
-  TextField,
 } from '@mui/material';
 import MyField from './MyField';
-import { Formik, Form as MyForm, Field } from 'formik';
+import { Formik, Form as MyForm } from 'formik';
 // import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 
@@ -87,7 +85,7 @@ const Form = (props) => {
                 >
                   <MyField
                     name="mintus"
-                    validate={props.validateMintus}
+                    validate={validateMintus}
                     onChange={props.handleChange}
                     onBlur={props.handleBlur}
                     error={props.errors.mintus}

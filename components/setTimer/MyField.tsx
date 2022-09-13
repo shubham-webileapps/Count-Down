@@ -1,8 +1,8 @@
 import React from 'react';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { InputAdornment, TextField } from '@mui/material';
-
 import { Field } from 'formik';
+
 const capitalize = (word) => {
   const lower = word.toLowerCase();
   return lower.charAt(0).toUpperCase() + lower.slice(1);
