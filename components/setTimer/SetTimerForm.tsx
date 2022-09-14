@@ -1,35 +1,12 @@
 import React from 'react';
 
-import {
-  Box,
-  CardContent,
-  CardActions,
-  Button,
-  Card,
-  Typography,
-} from '@mui/material';
-import TimerForm from './TimerForm';
-import TimerFormOld from './TimerFormOld';
+import { Box, CardActions, Button, Card } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const SetTimerForm = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Card container="true" spacing={2}>
-        {/* <CardContent>
-          <Typography>
-            <Typography gutterBottom variant="h5" sx={{ pt: 3 }}>
-              Timer Form
-            </Typography>
-            <TimerFormOld />
-          </Typography>
-          <Typography>
-            <Typography gutterBottom variant="h5" sx={{ pt: 4 }}>
-              Timer Form
-            </Typography>
-            <TimerForm />
-          </Typography>
-        </CardContent> */}
         <CardActions>
           <Button
             size="small"
