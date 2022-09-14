@@ -25,7 +25,7 @@ const useStyles = createUseStyles(
       },
     },
     control__svg: {
-      stroke: 'var(--timeit-primary-color)',
+      stroke: '#1976d2',
     },
     wrapper: {
       position: 'relative',
@@ -40,7 +40,7 @@ const useStyles = createUseStyles(
     selector: {
       width: '100%',
       height: '40px',
-      backgroundColor: 'var(--timeit-primary-color)',
+      backgroundColor: '#1976d2',
       position: 'absolute',
       top: '39px',
       borderRadius: '8px',
@@ -57,7 +57,7 @@ const useStyles = createUseStyles(
     },
     time: {
       zIndex: '1',
-      color: 'var(--timeit-primary-color)',
+      color: '#1976d2',
       opacity: '0.5',
       transition: 'color 0.5s',
     },
