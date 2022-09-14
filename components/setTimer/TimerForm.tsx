@@ -18,16 +18,16 @@ import TimeColumn from './timeColumn';
 let msg = 'Succussfully Set A Timer For ';
 function OnSubmit(values, MyhooksConnections) {
   if (
-    !isNaN(parseInt(values.mintus)) &&
+    !isNaN(values.mintus) &&
     values.mintus >= 0 &&
     values.mintus < 60 &&
-    !isNaN(parseInt(values.hours)) &&
+    !isNaN(values.hours) &&
     values.hours >= 0 &&
     values.hours < 24 &&
-    !isNaN(parseInt(values.seconds)) &&
+    !isNaN(values.seconds) &&
     values.seconds >= 0 &&
     values.seconds < 60 &&
-    !isNaN(parseInt(values.days)) &&
+    !isNaN(values.days) &&
     values.days >= 0 &&
     !(
       values.days === 0 &&
@@ -37,16 +37,15 @@ function OnSubmit(values, MyhooksConnections) {
     )
   ) {
     const newSeconds =
-      ((parseInt(values.days) * 24 + parseInt(values.hours)) * 60 +
-        parseInt(values.mintus)) *
-        60 +
-      parseInt(values.seconds);
+      ((values.days * 24 + values.hours) * 60 + values.mintus) * 60 +
+      values.seconds;
     MyhooksConnections.setTimerTime(newSeconds);
     if (values.days !== 0) msg = msg + values.days + ' Days ';
-    if (values.hours !== 0) msg = msg + values.hours + ' Hours';
-    if (values.mintus !== 0) msg = msg + values.mintus + ' Mintus';
+    if (values.hours !== 0) msg = msg + values.hours + ' Hours ';
+    if (values.mintus !== 0) msg = msg + values.mintus + ' Mintus ';
     if (values.seconds !== 0) msg = msg + values.seconds + ' Seconds.';
     MyhooksConnections.enqueueSnackbar(msg);
+    msg = '';
     // navigate to home
     MyhooksConnections.navigate('/ShowTimer');
   } else {
@@ -57,10 +56,10 @@ function OnSubmit(values, MyhooksConnections) {
 const TimerForm = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [hour, setHour] = useState('00');
-  const [mintus, setMintus] = useState('00');
-  const [seconds, setSeconds] = useState('00');
-  const [days, setDays] = useState('00');
+  const [hour, setHour] = useState(0);
+  const [mintus, setMintus] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [days, setDays] = useState(0);
   const dispatch = useDispatch();
   const { setTimerTime } = bindActionCreators(actionCreators, dispatch);
   const MyhooksConnections = { navigate, enqueueSnackbar, setTimerTime };
@@ -76,12 +75,12 @@ const TimerForm = () => {
           >
             <TimeColumn
               name="days"
-              // notShowExclude={notShowExclude}
               start={0}
               end={100}
               value={days}
               setValue={setDays}
-              // exclude={hourExclude}
+              notShowExclude={true}
+              // exclude={[1,2]}
             />
             <Typography
               sx={{
@@ -93,12 +92,11 @@ const TimerForm = () => {
             </Typography>
             <TimeColumn
               name="hours"
-              // notShowExclude={notShowExclude}
               start={0}
               end={23}
               value={hour}
               setValue={setHour}
-              // exclude={hourExclude}
+              notShowExclude={true}
             />
             <Typography
               sx={{
@@ -110,12 +108,11 @@ const TimerForm = () => {
             </Typography>
             <TimeColumn
               name="mintus"
-              // notShowExclude={notShowExclude}
               start={0}
               end={59}
               value={mintus}
               setValue={setMintus}
-              // exclude={hourExclude}
+              notShowExclude={true}
             />
             <Typography
               sx={{
@@ -127,12 +124,11 @@ const TimerForm = () => {
             </Typography>
             <TimeColumn
               name="seconds"
-              // notShowExclude={notShowExclude}
               start={0}
               end={59}
               value={seconds}
               setValue={setSeconds}
-              // exclude={hourExclude}
+              notShowExclude={true}
             />
           </Typography>
         </CardContent>
@@ -144,10 +140,10 @@ const TimerForm = () => {
             onClick={() =>
               OnSubmit(
                 {
-                  hours: hour,
-                  mintus: mintus,
-                  seconds: seconds,
-                  days: days,
+                  hours: parseInt(hour),
+                  mintus: parseInt(mintus),
+                  seconds: parseInt(seconds),
+                  days: parseInt(days),
                 },
                 MyhooksConnections
               )
