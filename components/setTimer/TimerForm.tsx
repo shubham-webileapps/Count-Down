@@ -24,7 +24,7 @@ import {
   OnSubmit,
 } from './MyFunc';
 
-const SetTimerForm = () => {
+const TimerForm = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
@@ -97,4 +97,4 @@ const SetTimerForm = () => {
     </Box>
   );
 };
-export default SetTimerForm;
+export default TimerForm;
