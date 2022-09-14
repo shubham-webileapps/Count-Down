@@ -76,9 +76,6 @@ const TimerForm = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Card container="true" spacing={2}>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="span">
-            Timer Form 2
-          </Typography>
           <Typography
             variant="body2"
             component="div"

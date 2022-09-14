@@ -3,8 +3,7 @@ import React from 'react';
 import {
   // Button,
   Box,
-  CardContent,
-  CardActions,
+  // CardContent,
   Card,
   Typography,
 } from '@mui/material';
@@ -14,14 +13,20 @@ const SetTimerForm = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Card container="true" spacing={2}>
-        <CardContent>
-          <Typography>
+        {/* <CardContent> */}
+        {/* <Typography>
+            <Typography gutterBottom variant="h5" sx={{pt:3}}>
+              Timer Form With Formik
+            </Typography>
             <TimerFormOld />
+          </Typography> */}
+        <Typography>
+          <Typography gutterBottom variant="h5" sx={{ pt: 4 }}>
+            Timer Form
           </Typography>
-          <Typography>
-            <TimerForm />
-          </Typography>
-        </CardContent>
+          <TimerForm />
+        </Typography>
+        {/* </CardContent> */}
       </Card>
     </Box>
   );

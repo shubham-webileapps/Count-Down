@@ -47,9 +47,6 @@ const TimerFormOld = () => {
           {(props) => (
             <MyForm>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="span">
-                  Timer Form With Formik
-                </Typography>
                 <Typography
                   variant="body2"
                   component="div"
