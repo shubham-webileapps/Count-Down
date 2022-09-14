@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-
+import { Typography } from '@mui/material';
 type TimeColumn = {
+  name: string;
   start: number;
   end: number;
   setValue: (value: string) => void;
@@ -75,6 +76,7 @@ const useStyles = createUseStyles(
 );
 
 const TimeColumn = ({
+  name,
   start,
   end,
   setValue,
@@ -157,66 +159,92 @@ const TimeColumn = ({
   };
 
   return (
-    <div className={classes.control}>
-      <div className={classes.control__time} onClick={controlTop}>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+    <Typography className="countdown" variant="div">
+      <Typography variant="div" className={classes.control}>
+        <Typography
+          variant="div"
+          className={classes.control__time}
+          onClick={controlTop}
         >
-          <path
-            d="M19.9201 15.0499L13.4001 8.52989C12.6301 7.75989 11.3701 7.75989 10.6001 8.52989L4.08008 15.0499"
-            strokeWidth="2"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={classes.control__svg}
-          />
-        </svg>
-      </div>
-      <div className={classes.wrapper}>
-        <div className={classes.selector} />
-        <div
-          className={classes.timeWrapper}
-          style={{
-            transform: `translateY(-${
-              slecetorMove && timeArray.indexOf(slecetorMove) * 40
-            }px)`,
-          }}
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19.9201 15.0499L13.4001 8.52989C12.6301 7.75989 11.3701 7.75989 10.6001 8.52989L4.08008 15.0499"
+              strokeWidth="2"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={classes.control__svg}
+            />
+          </svg>
+        </Typography>
+        <Typography variant="div" className={classes.wrapper}>
+          <Typography variant="div" className={classes.selector} />
+          <Typography
+            variant="div"
+            className={classes.timeWrapper}
+            style={{
+              transform: `translateY(-${
+                slecetorMove && timeArray.indexOf(slecetorMove) * 40
+              }px)`,
+            }}
+          >
+            {timeArray.map((time) => (
+              <Typography
+                variant="div"
+                key={time}
+                className={`${classes.time} ${
+                  +time === slecetorMove ? classes.selected : ''
+                } ${
+                  exclude && exclude.includes(+time) ? classes.disabled : ''
+                }`}
+              >
+                {time.toString().length === 1 ? `0${time}` : time}
+              </Typography>
+            ))}
+          </Typography>
+        </Typography>
+        <Typography
+          variant="div"
+          className={classes.control__time}
+          onClick={controlBottom}
         >
-          {timeArray.map((time) => (
-            <div
-              key={time}
-              className={`${classes.time} ${
-                +time === slecetorMove ? classes.selected : ''
-              } ${exclude && exclude.includes(+time) ? classes.disabled : ''}`}
-            >
-              {time.toString().length === 1 ? `0${time}` : time}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className={classes.control__time} onClick={controlBottom}>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995"
-            strokeWidth="2"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={classes.control__svg}
-          />
-        </svg>
-      </div>
-    </div>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995"
+              strokeWidth="2"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={classes.control__svg}
+            />
+          </svg>
+        </Typography>
+      </Typography>
+
+      <Typography
+        variant="div"
+        sx={{
+          color: '#1976d2',
+          alignItems: 'center',
+          lineHeight: '40px',
+          fontSize: '20px',
+        }}
+      >
+        {name}
+      </Typography>
+    </Typography>
   );
 };
 
