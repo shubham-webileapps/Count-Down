@@ -12,7 +12,8 @@ import {
   Card,
   Typography,
 } from '@mui/material';
-import MyField from './MyField';
+// import MyField from './MyField';
+import { NewSetTimer as MyField } from './NewSetTimer';
 import { Formik, Form as MyForm } from 'formik';
 
 import {
