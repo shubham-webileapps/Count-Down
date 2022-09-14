@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import './style.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SetTimerForm from './components/setTimer/SetTimerForm';
-import TimerForm from './components/setTimer/timerForm';
+// import TimerForm from './components/setTimer/timerForm';
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
             <Routes>
               <Route exact path="/ShowTimer" element={<StartedTimer />}></Route>
               <Route exact path="/" element={<SetTimerForm />}></Route>
-              <Route exact path="/setTimerForm" element={<TimerForm />}></Route>
+              {/* <Route exact path="/setTimerForm" element={<TimerForm />}></Route> */}
             </Routes>
           </Router>
         </Container>
