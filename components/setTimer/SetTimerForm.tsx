@@ -14,7 +14,6 @@ const SetTimerForm = () => {
             component={Link}
             to="/TimerFormOld"
           >
-            {' '}
             Timer Form 1
           </Button>
           <Button
@@ -23,8 +22,7 @@ const SetTimerForm = () => {
             component={Link}
             to="/TimerForm"
           >
-            {' '}
-            Timer Form 2{' '}
+            Timer Form 2
           </Button>
         </CardActions>
       </Card>
