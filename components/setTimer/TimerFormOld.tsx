@@ -40,9 +40,9 @@ const TimerFormOld = () => {
             mintus: 0,
             seconds: 0,
           }}
-          onSubmit={(values, actions) =>
-            OnSubmit(values, actions, MyhooksConnections)
-          }
+          onSubmit={(values) => {
+            OnSubmit(values, MyhooksConnections);
+          }}
         >
           {(props) => (
             <MyForm>
@@ -86,7 +86,7 @@ const TimerFormOld = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" sx={{ color: 'red' }} type="submit">
+                <Button size="small" sx={{ color: '#1976d2' }} type="submit">
                   Submit
                 </Button>
               </CardActions>

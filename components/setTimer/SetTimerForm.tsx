@@ -33,7 +33,7 @@ const SetTimerForm = () => {
         <CardActions>
           <Button
             size="small"
-            sx={{ color: 'red' }}
+            sx={{ color: '#1976d2' }}
             component={Link}
             to="/TimerFormOld"
           >
@@ -42,7 +42,7 @@ const SetTimerForm = () => {
           </Button>
           <Button
             size="small"
-            sx={{ color: 'red' }}
+            sx={{ color: '#1976d2' }}
             component={Link}
             to="/TimerForm"
           >

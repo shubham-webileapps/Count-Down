@@ -14,44 +14,44 @@ import {
 } from '@mui/material';
 
 import TimeColumn from './timeColumn';
-
-let msg = 'Succussfully Set A Timer For ';
-function OnSubmit(values, MyhooksConnections) {
-  if (
-    !isNaN(values.mintus) &&
-    values.mintus >= 0 &&
-    values.mintus < 60 &&
-    !isNaN(values.hours) &&
-    values.hours >= 0 &&
-    values.hours < 24 &&
-    !isNaN(values.seconds) &&
-    values.seconds >= 0 &&
-    values.seconds < 60 &&
-    !isNaN(values.days) &&
-    values.days >= 0 &&
-    !(
-      values.days === 0 &&
-      values.seconds === 0 &&
-      values.hours === 0 &&
-      values.mintus === 0
-    )
-  ) {
-    const newSeconds =
-      ((values.days * 24 + values.hours) * 60 + values.mintus) * 60 +
-      values.seconds;
-    MyhooksConnections.setTimerTime(newSeconds);
-    if (values.days !== 0) msg = msg + values.days + ' Days ';
-    if (values.hours !== 0) msg = msg + values.hours + ' Hours ';
-    if (values.mintus !== 0) msg = msg + values.mintus + ' Mintus ';
-    if (values.seconds !== 0) msg = msg + values.seconds + ' Seconds.';
-    MyhooksConnections.enqueueSnackbar(msg);
-    msg = '';
-    // navigate to home
-    MyhooksConnections.navigate('/ShowTimer');
-  } else {
-    MyhooksConnections.enqueueSnackbar('Enter a Valid input');
-  }
-}
+import { OnSubmit } from './MyFunc';
+// let msg = 'Succussfully Set A Timer For ';
+// function OnSubmit(values, MyhooksConnections) {
+//   if (
+//     !isNaN(values.mintus) &&
+//     values.mintus >= 0 &&
+//     values.mintus < 60 &&
+//     !isNaN(values.hours) &&
+//     values.hours >= 0 &&
+//     values.hours < 24 &&
+//     !isNaN(values.seconds) &&
+//     values.seconds >= 0 &&
+//     values.seconds < 60 &&
+//     !isNaN(values.days) &&
+//     values.days >= 0 &&
+//     !(
+//       values.days === 0 &&
+//       values.seconds === 0 &&
+//       values.hours === 0 &&
+//       values.mintus === 0
+//     )
+//   ) {
+//     const newSeconds =
+//       ((values.days * 24 + values.hours) * 60 + values.mintus) * 60 +
+//       values.seconds;
+//     MyhooksConnections.setTimerTime(newSeconds);
+//     if (values.days !== 0) msg = msg + values.days + ' Days ';
+//     if (values.hours !== 0) msg = msg + values.hours + ' Hours ';
+//     if (values.mintus !== 0) msg = msg + values.mintus + ' Mintus ';
+//     if (values.seconds !== 0) msg = msg + values.seconds + ' Seconds.';
+//     MyhooksConnections.enqueueSnackbar(msg);
+//     msg = '';
+//     // navigate to home
+//     MyhooksConnections.navigate('/ShowTimer');
+//   } else {
+//     MyhooksConnections.enqueueSnackbar('Enter a Valid input');
+//   }
+// }
 
 const TimerForm = () => {
   const navigate = useNavigate();
@@ -138,7 +138,7 @@ const TimerForm = () => {
         <CardActions>
           <Button
             size="small"
-            sx={{ color: 'red' }}
+            sx={{ color: '#1976d2' }}
             type="submit"
             onClick={() =>
               OnSubmit(

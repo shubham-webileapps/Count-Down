@@ -28,7 +28,7 @@ function validateHours(value) {
 }
 let msg = 'Succussfully Set A Timer For ';
 
-function OnSubmit(values, actions, MyhooksConnections) {
+function OnSubmit(values, MyhooksConnections) {
   if (
     !isNaN(parseInt(values.mintus)) &&
     values.mintus >= 0 &&
@@ -61,17 +61,10 @@ function OnSubmit(values, actions, MyhooksConnections) {
     MyhooksConnections.enqueueSnackbar(msg);
     // navigate to home
     MyhooksConnections.navigate('/ShowTimer');
+    msg = '';
   } else {
     MyhooksConnections.enqueueSnackbar('Enter a Valid input');
   }
-  actions.resetForm({
-    values: {
-      days: 0,
-      hours: 0,
-      mintus: 0,
-      seconds: 0,
-    },
-  });
 }
 
 export {
