@@ -12,17 +12,9 @@ import {
   Card,
   Typography,
 } from '@mui/material';
-// import MyField from './MyField';
-// import MyField from './NewSetTimer';
-import { Form as MyForm, Formik } from 'formik';
+
 import TimeColumn from './timeColumn';
-// import {
-//   validateSeconds,
-//   validateDays,
-//   validateMintus,
-//   validateHours,
-//   // OnSubmit,
-// } from './MyFunc';
+
 let msg = 'Succussfully Set A Timer For ';
 function OnSubmit(values, MyhooksConnections) {
   if (
